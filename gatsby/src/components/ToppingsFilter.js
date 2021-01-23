@@ -1,6 +1,6 @@
-import React from 'react';
-import { useStaticQuery, graphql, Link } from 'gatsby';
-import styled from 'styled-components';
+import React from "react";
+import { useStaticQuery, graphql, Link } from "gatsby";
+import styled from "styled-components";
 
 const ToppingsStyles = styled.div`
   display: flex;
@@ -19,7 +19,7 @@ const ToppingsStyles = styled.div`
       background: white;
       padding: 2px 5px;
     }
-    &[aria-current='page'] {
+    &[aria-current="page"] {
       background: var(--yellow);
     }
   }
@@ -77,7 +77,7 @@ export default function ToppingsFilter({ activeTopping }) {
   // Get a list of all the pizzas with their toppings
   // Count how many pizza are in each topping
   const toppingsWithCounts = countPizzasInToppings(pizzas.nodes);
-  // console.log(toppingsWithCounts);
+
   // Loop over the list of toppings and display the topping and the count of pizzas in that topping
   // Link it up.. ..
   return (
@@ -90,7 +90,7 @@ export default function ToppingsFilter({ activeTopping }) {
         <Link
           to={`/topping/${topping.name}`}
           key={topping.id}
-          className={topping.name === activeTopping ? 'active' : ''}
+          className={topping.name === activeTopping ? "active" : ""}
         >
           <span className="name">{topping.name}</span>
           <span className="count">{topping.count}</span>

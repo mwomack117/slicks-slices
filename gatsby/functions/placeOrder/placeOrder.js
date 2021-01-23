@@ -1,4 +1,4 @@
-const nodemailer = require('nodemailer');
+const nodemailer = require("nodemailer");
 
 function generateOrderEmail({ order, total }) {
   return `<div>
@@ -12,7 +12,7 @@ function generateOrderEmail({ order, total }) {
         ${item.size} ${item.name} - ${item.price}
       </li>`
         )
-        .join('')}
+        .join("")}
     </ul>
     <p>Your total is <strong>$${total}</strong> due at pickup</p>
     <style>
@@ -44,21 +44,20 @@ exports.handler = async (event, context) => {
   // for testing loading state
   await wait(2000);
   const body = JSON.parse(event.body);
-  console.log(body);
+
   // Check if they have filled out the honeypot
   if (body.mapleSyrup) {
     return {
       statusCode: 400,
       body: JSON.stringify({
-        message: 'Boop beep bop zzzzstt good bye ERR %T@#%',
+        message: "Boop beep bop zzzzstt good bye ERR %T@#%",
       }),
     };
   }
 
   // validate the data coming in is correct
-  const requiredFields = ['email', 'name', 'order'];
+  const requiredFields = ["email", "name", "order"];
   for (const field of requiredFields) {
-    console.log(`Checking that ${field} is good`);
     if (!body[field]) {
       return {
         statusCode: 400,
@@ -81,15 +80,15 @@ exports.handler = async (event, context) => {
 
   // send the email
   const info = await transporter.sendMail({
-    from: 'Slicks Slices <slick@example.com>',
+    from: "Slicks Slices <slick@example.com>",
     to: `${body.name} <${body.email}>`,
-    subject: 'New Order!',
+    subject: "New Order!",
     html: generateOrderEmail({ order: body.order, total: body.total }),
   });
   // send the success or error message
-  console.log(info);
+
   return {
     statusCode: 200,
-    body: JSON.stringify({ message: 'Success' }),
+    body: JSON.stringify({ message: "Success" }),
   };
 };

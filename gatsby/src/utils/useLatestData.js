@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 // this is used so vscode will auto format graphql without a library.. handy but not required
 const gql = String.raw;
@@ -24,11 +24,11 @@ export function useLatestData() {
   const [slicemasters, setSlicemasters] = useState();
   // use a side effet to fetch the data from the graphql endpoint
   useEffect(() => {
-    console.log('fetching data');
+    console.log("FETCHING DATA");
     // when the component loads, fetch the data
     fetch(process.env.GATSBY_GRAPHQL_ENDPOINT, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         query: gql`
           query {
@@ -53,7 +53,7 @@ export function useLatestData() {
         setSlicemasters(res.data.StoreSettings.slicemaster);
       })
       .catch((err) => {
-        console.log('SHOOT!!!');
+        console.log("SHOOT!!!");
         console.log(err);
       });
   }, []);

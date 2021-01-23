@@ -1,7 +1,7 @@
-import React from 'react';
-import { graphql } from 'gatsby';
-import styled from 'styled-components';
-import SEO from '../components/SEO';
+import React from "react";
+import { graphql } from "gatsby";
+import styled from "styled-components";
+import SEO from "../components/SEO";
 
 const BeerGridStyles = styled.div`
   display: grid;
@@ -25,7 +25,7 @@ const SingleBeerStyles = styled.div`
 
 export default function BeersPage({ data }) {
   const beers = data.beers.nodes;
-  console.log(beers);
+
   return (
     <>
       <SEO title={`Beers! We have ${beers.length} in stock`} />

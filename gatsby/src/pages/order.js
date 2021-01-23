@@ -1,22 +1,22 @@
-import { graphql } from 'gatsby';
-import React from 'react';
-import Img from 'gatsby-image';
-import SEO from '../components/SEO';
-import useForm from '../utils/useForm';
-import calculatePizzaPrice from '../utils/calculatePizzaPrice';
-import formatMoney from '../utils/formatMoney';
-import OrderStyles from '../styles/OrderStyles';
-import MenuItemStyles from '../styles/MenuItemStyles';
-import usePizza from '../utils/usePizza';
-import PizzaOrder from '../components/PizzaOrder';
-import calculateOrderTotal from '../utils/calculateOrderTotal';
+import { graphql } from "gatsby";
+import React from "react";
+import Img from "gatsby-image";
+import SEO from "../components/SEO";
+import useForm from "../utils/useForm";
+import calculatePizzaPrice from "../utils/calculatePizzaPrice";
+import formatMoney from "../utils/formatMoney";
+import OrderStyles from "../styles/OrderStyles";
+import MenuItemStyles from "../styles/MenuItemStyles";
+import usePizza from "../utils/usePizza";
+import PizzaOrder from "../components/PizzaOrder";
+import calculateOrderTotal from "../utils/calculateOrderTotal";
 
 export default function OrderPage({ data }) {
   const pizzas = data.pizzas.nodes;
   const { values, updateValue } = useForm({
-    name: '',
-    email: '',
-    mapleSyrup: '',
+    name: "",
+    email: "",
+    mapleSyrup: "",
   });
   const {
     order,
@@ -30,8 +30,7 @@ export default function OrderPage({ data }) {
     pizzas,
     values,
   });
-  // console.log(pizzas);
-  // console.log(order);
+
   if (message) {
     return <p>{message}</p>;
   }
@@ -75,7 +74,7 @@ export default function OrderPage({ data }) {
                 <h2>{pizza.name}</h2>
               </div>
               <div>
-                {['S', 'M', 'L'].map((size) => (
+                {["S", "M", "L"].map((size) => (
                   <button
                     type="button"
                     key={size}
@@ -106,9 +105,9 @@ export default function OrderPage({ data }) {
           <h3>
             Your Total is {formatMoney(calculateOrderTotal(order, pizzas))}
           </h3>
-          <div>{error ? <p>Error: {error}</p> : ''}</div>
+          <div>{error ? <p>Error: {error}</p> : ""}</div>
           <button type="submit" disabled={loading}>
-            {loading ? 'Placing Order...' : 'Order Ahead'}
+            {loading ? "Placing Order..." : "Order Ahead"}
           </button>
         </fieldset>
       </OrderStyles>

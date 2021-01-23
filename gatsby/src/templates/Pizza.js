@@ -1,8 +1,8 @@
-import React from 'react';
-import { graphql } from 'gatsby';
-import styled from 'styled-components';
-import Img from 'gatsby-image';
-import SEO from '../components/SEO';
+import React from "react";
+import { graphql } from "gatsby";
+import styled from "styled-components";
+import Img from "gatsby-image";
+import SEO from "../components/SEO";
 
 const PizzaGrid = styled.div`
   display: grid;
@@ -12,7 +12,6 @@ const PizzaGrid = styled.div`
 
 // -------------------------------- destructioning property 2 levels deep
 export default function SinglePizzaPage({ data: { pizza } }) {
-  console.log(pizza);
   return (
     <>
       <SEO title={pizza.name} image={pizza.image?.asset?.fluid?.src} />

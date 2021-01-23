@@ -1,8 +1,8 @@
-import React, { useContext, useState } from 'react';
-import OrderContext from '../components/OrderContext';
-import attachNamesAndPrices from './attachNamesAndPrices';
-import calculateOrderTotal from './calculateOrderTotal';
-import formatMoney from './formatMoney';
+import React, { useContext, useState } from "react";
+import OrderContext from "../components/OrderContext";
+import attachNamesAndPrices from "./attachNamesAndPrices";
+import calculateOrderTotal from "./calculateOrderTotal";
+import formatMoney from "./formatMoney";
 
 export default function usePizza({ pizzas, values }) {
   // 1. Create some state to hold our order
@@ -12,7 +12,7 @@ export default function usePizza({ pizzas, values }) {
   const [order, setOrder] = useContext(OrderContext);
   const [error, setError] = useState();
   const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState("");
 
   // 2. Make a function add things to order
   function addToOrder(orderedPizza) {
@@ -45,20 +45,19 @@ export default function usePizza({ pizzas, values }) {
       mapleSyrup: values.mapleSyrup,
     };
     // 4. Send this data the a serevrless function when they check out
-    console.log(process.env.GATSBY_SERVERLESS_BASE);
+
     const res = await fetch(
       `${process.env.GATSBY_SERVERLESS_BASE}/placeOrder`,
       {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify(body),
       }
     );
     const text = JSON.parse(await res.text());
-    console.log('body:', body);
-    console.log('text:', text);
+
     // check if everything worked
     if (res.status >= 400 && res.status < 600) {
       setLoading(false); // turn off loading
@@ -66,7 +65,7 @@ export default function usePizza({ pizzas, values }) {
     } else {
       // it worked!
       setLoading(false);
-      setMessage('Success! Come on down for your pizza');
+      setMessage("Success! Come on down for your pizza");
     }
   }
 
